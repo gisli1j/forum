@@ -5,16 +5,31 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Create thread</div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">sadfj´ksdjflksdjfidsj</div>
-                    <div class="panel-body">df´æ,,dfg´fæd,´æ,gdfæ´,gfldæjgdlfkajglkafdjlgkjaoidkfajf</div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">lsadjhkufhsdgasudhgkdfjh</div>
-                    <div class="panel-body">df´æ,,dfg´fæd,´æ,gdfæ´,gfldæjgdlfkajglkafdjlgkjaoidkfajf</div>
+                <div class="panel-heading">Forum Threads</div>
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <div class="panel-body">
+                    <form method="POST" action="/threads">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label>Title: </label>
+                            <input type="text" name="title" class="form-control" value="{{ old('title') }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Body: </label>
+                            <textarea type="text" name="body" class="form-control" rows="8">{{ old('body') }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary">Publish</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
